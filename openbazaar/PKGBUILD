@@ -71,3 +71,7 @@ package(){
    cd $pkgdir/var/lib/$pkgname/ && python2 -m compileall .
 }
 
+md5sums=('b87cfc56c092c4bc78ba35b4ae2d09f7'
+         '1d1e3933c4fd26f565e47f475eede2b4'
+         '1832b665788d78d80949d57d955ccf34'
+         '0741fc4c68e499b10cbf272f27efd3a0')
