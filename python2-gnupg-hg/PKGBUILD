@@ -11,7 +11,7 @@ arch=("any")
 replaces=('python2-gnupg')
 provides=('python2-gnupg')
 depends=('python2' 'gnupg')
-makedeps=('mercurial')
+makedepends=('mercurial')
 source=("${_pkgsrcname}::hg+https://bitbucket.org/vinay.sajip/python-gnupg")
 
 build() {
