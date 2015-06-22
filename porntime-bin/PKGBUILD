@@ -10,12 +10,12 @@
 
 pkgname=porntime-bin
 pkgver=0.3.8
-pkgrel=2
+pkgrel=3
 pkgdesc="Stream porn movies from torrents. Skip the downloads. Launch, click, watch."
 arch=('x86_64' 'i686')
-url="http://porntime.io/"
+url="http://porntime.ws/"
 license=('GPL3')
-depends=('ttf-liberation' 'gconf' 'nss')
+depends=('ttf-liberation' 'gconf' 'nss' 'libxtst' 'gtk2' 'alsa-lib')
 optdepends=('net-tools: necessary for the new vpn feature')
 provides=('porntime')
 conflicts=('porntime')
