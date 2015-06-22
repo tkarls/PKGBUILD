@@ -17,27 +17,15 @@ optdepends=('zenity: For the GTK3 GUI.'
             'perl: For installing Steam.')
 conflicts=('winetricks' 'bin32-winetricks')
 provides=('winetricks')
-source=("https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
-        "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks.1")
-md5sums=('SKIP'
-         'SKIP')
+source=("$pkgname::git+https://github.com/Winetricks/winetricks.git")
+sha256sums=('SKIP')
 
 pkgver() {
-    awk 'BEGIN {
-           FS = "[ /^]+"
-           while ("git ls-remote https://github.com/Winetricks/winetricks | sort -Vk2" | getline) {
-               if (!sha)
-                   sha = substr($0, 1, 7)
-               tag = $3
-           }
-           while ("curl -s https://github.com/Winetricks/winetricks/releases/tag/" tag | getline)
-               if ($3 ~ "commits")
-                   com = $2
-           printf com ? "%s.r%s.g%s\n" : "%s\n", tag, com, sha
-       }'
+    cd "$pkgname"
+    git describe --long --tags | sed -r 's/-([0-9]+)-/.r\1./'
 }
 
 package() {
-  install -Dm755 ${srcdir}/winetricks ${pkgdir}/usr/bin/winetricks
-  install -Dm755 ${srcdir}/winetricks.1 ${pkgdir}/usr/share/man/man1/winetricks.1
+    cd "$pkgname"
+    make DESTDIR="$pkgdir" install
 }
