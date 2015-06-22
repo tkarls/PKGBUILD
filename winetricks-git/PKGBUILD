@@ -8,12 +8,14 @@ pkgdesc='Script to install various redistributable runtime libraries in Wine.'
 url='http://wiki.winehq.org/winetricks'
 license=('LGPL')
 arch=('any')
-depends=('wine' 'cabextract' 'unzip' 'xorg-xmessage' 'wget')
+depends=('wine' 'curl' 'cabextract' 'unrar' 'unzip' 'p7zip')
 makedepends=('git')
-optdepends=('zenity: GUI for GNOME desktop'
-            'kdebase-kdialog: GUI for KDE desktop')
+optdepends=('zenity: For the GTK3 GUI.'
+            'kdebase-kdialog: For the KDE GUI (less capable).'
+            'sudo: For automatically mounting ISO images.'
+            'xdg-utils: For opening manual download pages.'
+            'perl: For installing Steam.')
 conflicts=('winetricks' 'bin32-winetricks')
-replaces=('bin32-winetricks' 'winetricks')
 provides=('winetricks')
 source=("https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
         "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks.1")
