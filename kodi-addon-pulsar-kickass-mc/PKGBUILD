@@ -1,7 +1,7 @@
 # Maintainer: M0Rf30
 
 pkgname=kodi-addon-pulsar-kickass-mc
-pkgver=3.0
+pkgver=3.0.2
 pkgrel=1
 pkgdesc='KickAss provider for pulsar'
 classname=script.pulsar.kickass-mc
@@ -19,4 +19,4 @@ package() {
   cp -r ${srcdir}/${classname}-${pkgver} ${pkgdir}/${installpath}/${classname}
 }
 
-md5sums=('8a43354f6fb57578ab14c9fff934d10e')
+md5sums=('bcae3b7a45c9109c63274682c4dcda41')
