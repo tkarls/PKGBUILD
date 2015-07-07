@@ -10,7 +10,7 @@
 
 pkgname=porntime-bin
 pkgver=0.3.8
-pkgrel=3
+pkgrel=4
 pkgdesc="Stream porn movies from torrents. Skip the downloads. Launch, click, watch."
 arch=('x86_64' 'i686')
 url="http://porntime.ws/"
@@ -21,7 +21,7 @@ provides=('porntime')
 conflicts=('porntime')
 options=('!strip')
 install="porntime.install"
-md5sums=('82cd0919242428a55c4cc1d6b744fa07'
+md5sums=('309ed5f0d93e87ff0f33f7368749e079'
          '69d7b9c45f83c399b1c68e85c2921a9a'
          'eda173affdfd1630ff6a0bfa566bc1de'
          '886a43e17c69dd434b2bbb243fefee75')
@@ -30,7 +30,7 @@ _platform=X64
 
 if [ "$CARCH" = 'i686' ]; then
   _platform=X32
-  md5sums[0]='5dabe34043dd1edca051ec4f6893ec55'
+  md5sums[0]='90f72d88bef9758b5ba09b05c3e45e49'
 fi
 
 source=("http://porntime.ws/PornTime${_platform}.tar.gz"
