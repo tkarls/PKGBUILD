@@ -2,7 +2,7 @@
 
 pkgname=kdeplasma-applets-veromix-git
 pkgver=29.813dcbd
-pkgrel=1
+pkgrel=2
 pkgdesc="A plasmoid mixer for the Pulseaudio sound server"
 url="https://github.com/M0Rf30/veromix-plasmoid"
 license=('GPL3')
