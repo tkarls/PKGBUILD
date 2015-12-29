@@ -1,6 +1,6 @@
 #Maintainer: M0Rf30
 
-_pkgname=openbazaard
+_pkgname=openbazaard-standalone
 pkgname=${_pkgname}-git
 pkgver=544.645885f
 pkgrel=1
@@ -29,7 +29,7 @@ msg2 "Creating an optimized standalone executable"
   source env/bin/activate
   pip2 install -r requirements.txt
   pip2 install git+https://github.com/pyinstaller/pyinstaller.git
-  env/bin/pyinstaller -F -n openbazaard  openbazaard.py
+  env/bin/pyinstaller -F -n ${_pkgname}  openbazaard.py
   
 msg2 "Install systemd service"
   install -Dm644 $srcdir/${_pkgname}.service $pkgdir/usr/lib/systemd/system/${_pkgname}.service
@@ -38,7 +38,6 @@ msg2 "Install ${_pkgname} scripts"
   install -Dm755 $srcdir/${_pkgname}.sh $pkgdir/usr/bin/${_pkgname}
   install -Dm755 dist/${_pkgname} $pkgdir/var/lib/${_pkgname}/${_pkgname}
   install -Dm755 ob.cfg $pkgdir/var/lib/${_pkgname}/ob.cfg
-
 }
 
 pkgver() {
@@ -47,5 +46,5 @@ pkgver() {
 }
 
 md5sums=('SKIP'
-         '1bdae51331031c43d8ea6c4a8cb107d9'
-         'faf204b62ca6d7126d96ea3fbdd8e600')
+         '022551cd8484beb9cfd3b312f5a896da'
+         '8d4a47817e683bc4cc83103a6e0cefdd')
