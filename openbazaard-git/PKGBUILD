@@ -2,7 +2,7 @@
 
 _pkgname=openbazaard
 pkgname=${_pkgname}-git
-pkgver=762.922cc80
+pkgver=799.3379a0b
 pkgrel=1
 pkgdesc="Server daemon for communication between client and OpenBazaar network"
 arch=(any)
@@ -16,7 +16,7 @@ depends=(
 	python2-gnupg-isis
 	python2-libbitcoinclient
 	python2-miniupnpc
-	python2-protobuf
+	python2-protobuf3
 	python2-pyelliptic
 	python2-pynacl
 	python2-pystun
@@ -55,8 +55,6 @@ package(){
   install -dm755 $pkgdir/var/lib/
 
   cp -r ${_pkgname} $pkgdir/var/lib/
-
-  install -Dm755 $srcdir/${_pkgname}.sh $pkgdir/var/lib/${_pkgname}/${_pkgname}
 
   msg2 "Python2 bytecode generation"
   cd $pkgdir/var/lib/${_pkgname}/ && python2 -m compileall .
