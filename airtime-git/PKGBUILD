@@ -7,7 +7,8 @@ pkgdesc="Open broadcast software for scheduling and station management."
 arch=('i686' 'x86_64')
 url="http://www.sourcefabric.org/en/airtime"
 license=('GPL3')
-depends=('php' 'php-gd' 'php-pear' 'zendframework' 'php-pgsql' 'php-apcu' 'php-apcu-bc'
+phpver=56
+depends=("php$phpver" "php$phpver-gd" "php$phpver-pear" 'zendframework' "php$phpver-pgsql"
          'python2' 'python2-virtualenv' 'python2-pip'
          'python2-configobj' 'python2-anyjson' 'python2-amqplib'
          'python2-argparse' 'python2-configobj' 'python2-docopt'
@@ -48,7 +49,7 @@ branch=2.5.x
 
 prepare() {
     cd "$srcdir/airtime"
-    grep -rl '/usr/bin/python' 'python_apps' 'utils' | xargs  sed -i "s%/usr/bin/python%/usr/bin/python2%g"
+#    grep -rl '/usr/bin/python' 'python_apps' 'utils' | xargs  sed -i "s%/usr/bin/python%/usr/bin/python2%g"
     grep -rl 'www-data' . | xargs  sed -i "s%www-data%http%g"
 }
 
@@ -74,7 +75,7 @@ package() {
     install -D -m644 "LICENSE" "${pkgdir}/usr/share/doc/airtime/LICENSE"
     install -D -m644 "LICENSE_3RD_PARTY" "${pkgdir}/usr/share/licenses/airtime/LICENSE_3RD_PARTY"
 
-    install -D -m644 "../airtime.tmpfiles.conf" "${pkgdir}/usr/lib/tmpfiles.d/airtime.conf"
+    install -D -m644 "airtime_mvc/build/airtime.example.conf" "${pkgdir}/etc/airtime/airtime.example.conf"
     install -D -m644 "airtime_mvc/build/airtime-php.logrotate" "${pkgdir}/etc/logrotate.d/airtime-php"
     install -D -m644 "python_apps/pypo/liquidsoap/airtime-liquidsoap.logrotate" "${pkgdir}/etc/logrotate.d/airtime-liquidsoap"
 
@@ -85,9 +86,12 @@ package() {
     install -d -m777 "${pkgdir}/var/tmp/airtime"
 
     install -d -m655 "${pkgdir}/etc/airtime"
-    touch "${pkgdir}/etc/airtime/airtime.conf"
-
-    install -D -m644 "installer/php/airtime.ini" "${pkgdir}/etc/php/conf.d/airtime.ini"
+    install -d -m655 "${pkgdir}/usr/share/php/"
+#Zend
+    ln -sr /usr/share/zendframework/library/ "${pkgdir}/usr/share/php/Zend"
+    ln -sr /usr/share/zendframework/library "${pkgdir}/usr/share/php/libzend-framework-php"
+ 
+    install -D -m644 "installer/php/airtime.ini" "${pkgdir}/etc/php$phpver/conf.d/airtime.ini"
     install -D -m644 ../httpd-airtime.conf "${pkgdir}/etc/httpd/conf/extra/httpd-airtime.conf"
 
     install -D -m644 ../airtime-media-monitor.service "${pkgdir}/usr/lib/systemd/system/airtime-media-monitor.service"
@@ -109,12 +113,10 @@ package() {
 
     chown -R ${web_user}:${web_user} "${pkgdir}/var/tmp/airtime"
     chown -R ${web_user}:${web_user} "${pkgdir}/var/log/airtime"
-    chown -R ${web_user}:${web_user} "${pkgdir}/etc/airtime"
     
 msg2 "Cleaning..."
     rm -r "${pkgdir}/etc/init"
     rm -r "${pkgdir}/etc/init.d"
-    rm "${pkgdir}/usr/share/airtime/airtime_mvc/build/airtime.example.conf" 
 }
 
 pkgver() {
@@ -123,8 +125,8 @@ pkgver() {
 }
 
 md5sums=('SKIP'
-         '4e40e6b0f7fa9ec7eb8e5356bf817bd3'
+         'f42b444b6b06268a8c8695173b55391c'
          'fc4a319d43a96f0003f348c7ddd8aca2'
          '93f750480f7c49d72cdcdb10cd97c089'
          'd9c15aaa7b1da14acc99e047f58aac66'
-         '4e9ffb41819885ee91896ef611cba781')
+         '3eb519eef9508bcf78447941d6e0bbde')
