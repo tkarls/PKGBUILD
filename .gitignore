@@ -1,0 +1,6 @@
+src/*		
+pkg/*		
+*.tar.gz		
+*.tar.zx		
+*.tar.bz2		
+.AURINFO
