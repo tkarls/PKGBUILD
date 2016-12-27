@@ -1,7 +1,7 @@
 # Maintainer: M0Rf30
 
-pkgname=python2-libnacl-git
-pkgver=382.dba6d55
+pkgname=python2-pynacl-git
+pkgver=1.0.1.r16.g42ef7df
 pkgrel=1
 pkgdesc='A simple ctypes based python binding to libsodium'
 arch=('any')
@@ -19,7 +19,7 @@ package() {
 
 pkgver() {
   cd $pkgname
-  echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 md5sums=('SKIP')
